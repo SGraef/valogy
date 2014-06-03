@@ -1,0 +1,2 @@
+module Valogy
+end
