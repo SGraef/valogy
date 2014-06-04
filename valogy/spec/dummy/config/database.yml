@@ -1,8 +1,4 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
+
 development:
   adapter: postgresql
   encoding: unicode
@@ -19,7 +15,7 @@ test:
   adapter: postgresql
   encoding: unicode
   template: template0
-  database: valogy_development
+  database: valogy_test
   username: postgres
   password:
   pool: 5
@@ -28,7 +24,7 @@ production:
   adapter: postgresql
   encoding: unicode
   template: template0
-  database: valogy_development
+  database: valogy_production
   username: postgres
   password:
   pool: 5
