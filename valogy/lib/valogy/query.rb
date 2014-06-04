@@ -1,7 +1,7 @@
 module Valogy
   module Query
    def existence(table, column)
-     result = execute("ALTER TABLE #{table} ALTER COLUMN #{column} SET NOT NULL;")
+     result = connection.execute("ALTER TABLE #{table} ALTER COLUMN #{column} SET NOT NULL;")
    end 
    
    def existence_between_models(table, index, constraint)
