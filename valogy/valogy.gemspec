@@ -4,7 +4,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "valogy/version"
 
 # Describe your gem and declare its dependencies:
-Gem::Specification.new do |s|
+Gem::Specification.new do |spec|
   spec.name        = "valogy"
   spec.version     = Valogy::VERSION
   spec.authors     = ["Sascha Graef"]
@@ -20,9 +20,10 @@ Gem::Specification.new do |s|
 
   spec.add_dependency "rails", "~> 4.0.2"
   spec.add_dependency "pg"
+  spec.add_dependency "nokogiri"
 
   spec.add_development_dependency "bundler", ">= 1.5.3", "< 1.7.0"
   spec.add_development_dependency "rake", "~> 10.2"
-  spec.add_development_dependency "rspec", "~> 2.14"
-  spec.add_development_dependency "pry", "~> 0.9"
+  spec.add_development_dependency "rspec-rails", "~> 3.0"
+  spec.add_development_dependency "pry-rails", "~> 0.3"
 end
