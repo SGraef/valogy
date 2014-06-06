@@ -2,4 +2,4 @@ module Valogy
 end
 
 require 'valogy/query'
-require 'valogy/connection'
+require 'valogy/parsing'
