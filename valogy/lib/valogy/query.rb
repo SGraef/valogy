@@ -1,11 +1,13 @@
 module Valogy
   module Query
-   def existence(table, column)
-     result = connection.execute("ALTER TABLE #{table} ALTER COLUMN #{column} SET NOT NULL;")
+   def existence(column)
+     connection.execute("ALTER TABLE #{self.class.table_name} ADD CONSTRAINT
+      valogy_#{self.class.table_name}_#{column}_not_null CHECK (#{column} IS NOT NULL)")
    end 
    
-   def existence_between_models(table, index, constraint)
-     result = execute("ALTER TABLE #{table} ADD CONSTRAINT #{constraint} PRIMARY KEY USING INDEX dist_id_temp_idx;")
+   def existence_between_models(column)
+    connection.execute("ALTER TABLE #{self.class.table_name} ADD CONSTRAINT
+     valogy_#{self.class.table_name}_#{column}_not_null (#{column} IS NOT NULL)")
    end
    
   end

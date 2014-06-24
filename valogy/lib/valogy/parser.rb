@@ -1,5 +1,5 @@
 module Valogy
-  module Parsing
+  class Parser
     EXACTLY  = "qualifiedCardinality"
     PROPERTY = "onProperty"
     
@@ -8,12 +8,12 @@ module Valogy
       @ontology = Nokogiri::XML(file) do |config|
         config.noblanks
       end
-      parse
     end
       
     def self.parse(file)
-      open_file(file)
-      all_classes
+      parser = self.new
+      parser.open_file(file)
+      parser.all_classes
     end
     
     def all_classes
@@ -29,33 +29,33 @@ module Valogy
       Object.const_get(klass)
     end
     
-    def dermine_column(element)
-      extract_qualified_name(element.attributes["resource"].value).downcase
+    def determine_column(element)
+      extract_qualified_name(element.attributes["resource"].value).sub("has","").downcase
     end
     
-    def extract_qualified_class_name(value)
+    def extract_qualified_name(value)
       value.split("#").last
     end
     
-    def restriction(element)
-      element.xpath(".//owl:Restrictions")
+    def restrictions(element)
+      element.xpath(".//owl:Restriction")
     end
     
     def resolverestriction(restriction)
-      @column = nil
       restriction.children.each do |constr|
         case constr.name
         when PROPERTY
           @column = determine_column(constr)
         when EXACTLY
-          count = constr.child.text
+          count = constr.child.text.to_i
           if @column
             if count == 1
-              @model.existance(@column)
+              @model.new.existence(@column)
             end
           end
         end
       end
     end
+    
   end
 end
