@@ -447,3 +447,312 @@ DETAIL:  Failing row contains (53, null, 2014-09-17 13:27:57.450986, 2014-09-17 
  valogy_users_username_not_null CHECK (username IS NOT NULL)
   [1m[36m (0.3ms)[0m  [1mSELECT * FROM pg_constraint WHERE conname='valogy_users_username_not_null' [0m
   [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mSELECT * FROM pg_constraint WHERE conname='valogy_users_username_not_null' [0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mSELECT * FROM pg_constraint WHERE conname='valogy_users_username_not_null' [0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (20.5ms)[0m  [1mALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_Sheet_not_null CHECK (Sheet IS NOT NULL)[0m
+PG::UndefinedColumn: ERROR:  column "sheet" does not exist
+: ALTER TABLE slots ADD CONSTRAINT
+      valogy_slots_Sheet_not_null CHECK (Sheet IS NOT NULL)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  SELECT * FROM pg_constraint WHERE conname='valogy_users_username_not_null' 
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_Sheet_not_null CHECK (Sheet IS NOT NULL)[0m
+PG::UndefinedColumn: ERROR:  column "sheet" does not exist
+: ALTER TABLE slots ADD CONSTRAINT
+      valogy_slots_Sheet_not_null CHECK (Sheet IS NOT NULL)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (21.8ms)[0m  [1mALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_not_null CHECK (sheet IS NOT NULL)[0m
+PG::UndefinedColumn: ERROR:  column "sheet" does not exist
+: ALTER TABLE slots ADD CONSTRAINT
+      valogy_slots_sheet_not_null CHECK (sheet IS NOT NULL)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  SELECT * FROM pg_constraint WHERE conname='valogy_users_username_not_null' 
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_not_null CHECK (sheet IS NOT NULL)[0m
+PG::UndefinedColumn: ERROR:  column "sheet" does not exist
+: ALTER TABLE slots ADD CONSTRAINT
+      valogy_slots_sheet_not_null CHECK (sheet IS NOT NULL)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (25.1ms)[0m  [1mALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)[0m
+PG::UndefinedColumn: ERROR:  column "sheet_id" does not exist
+: ALTER TABLE slots ADD CONSTRAINT
+      valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  SELECT * FROM pg_constraint WHERE conname='valogy_users_username_not_null' 
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)[0m
+PG::UndefinedColumn: ERROR:  column "sheet_id" does not exist
+: ALTER TABLE slots ADD CONSTRAINT
+      valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (21.0ms)[0m  [1mALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)[0m
+PG::UndefinedColumn: ERROR:  column "sheet_id" does not exist
+: ALTER TABLE slots ADD CONSTRAINT
+      valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  SELECT * FROM pg_constraint WHERE conname='valogy_users_username_not_null' 
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)[0m
+PG::UndefinedColumn: ERROR:  column "sheet_id" does not exist
+: ALTER TABLE slots ADD CONSTRAINT
+      valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (74.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (91.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20140604131018)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (6.4ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "username" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (16.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140604131018"]]
+  [1m[36m (15.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSheets (20140908105233)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (36.8ms)[0m  [1mCREATE TABLE "sheets" ("id" serial primary key, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (33.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140908105233"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSlots (20140908105400)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (3.2ms)[0m  [1mCREATE TABLE "slots" ("id" serial primary key, "sheet_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140908105400"]]
+  [1m[36m (1.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.3ms)[0m  [1mALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (124.2ms)[0m  INSERT INTO "users" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Wed, 17 Sep 2014 15:05:01 UTC +00:00], ["updated_at", Wed, 17 Sep 2014 15:05:01 UTC +00:00]]
+PG::CheckViolation: ERROR:  new row for relation "users" violates check constraint "valogy_users_username_not_null"
+DETAIL:  Failing row contains (1, null, 2014-09-17 15:05:01.297237, 2014-09-17 15:05:01.297237).
+: INSERT INTO "users" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.7ms)[0m  SELECT * FROM pg_constraint WHERE conname='valogy_users_username_not_null' 
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)
+  [1m[36m (0.3ms)[0m  [1mSELECT * FROM pg_constraint WHERE conname='valogy_users_username_not_null' [0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.9ms)[0m  [1mALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)
+  [1m[36m (0.3ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (7.1ms)[0m  INSERT INTO "slots" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Wed, 17 Sep 2014 15:12:44 UTC +00:00], ["updated_at", Wed, 17 Sep 2014 15:12:44 UTC +00:00]]
+PG::CheckViolation: ERROR:  new row for relation "slots" violates check constraint "valogy_slots_sheet_id_not_null"
+DETAIL:  Failing row contains (1, null, 2014-09-17 15:12:44.865802, 2014-09-17 15:12:44.865802).
+: INSERT INTO "slots" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"
+  [1m[36m (2.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "slots" ("created_at", "sheet_id", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Wed, 17 Sep 2014 15:12:44 UTC +00:00], ["sheet_id", 1], ["updated_at", Wed, 17 Sep 2014 15:12:44 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mSELECT * FROM pg_constraint WHERE conname='valogy_slot_sheet_id_not_null' [0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  SELECT * FROM pg_constraint WHERE conname='valogy_slot_sheet_id_not_null' 
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "users" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Wed, 17 Sep 2014 15:12:44 UTC +00:00], ["updated_at", Wed, 17 Sep 2014 15:12:44 UTC +00:00]]
+PG::CheckViolation: ERROR:  new row for relation "users" violates check constraint "valogy_users_username_not_null"
+DETAIL:  Failing row contains (2, null, 2014-09-17 15:12:44.903462, 2014-09-17 15:12:44.903462).
+: INSERT INTO "users" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (1.2ms)[0m  [1mINSERT INTO "users" ("created_at", "updated_at", "username") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Wed, 17 Sep 2014 15:12:44 UTC +00:00], ["updated_at", Wed, 17 Sep 2014 15:12:44 UTC +00:00], ["username", "foobar"]]
+  [1m[35m (0.3ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mSELECT * FROM pg_constraint WHERE conname='valogy_users_username_not_null' [0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  SELECT * FROM pg_constraint WHERE conname='valogy_users_username_not_null' 
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mSELECT * FROM pg_constraint WHERE conname='valogy_slot_sheet_id_not_null' [0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SELECT * FROM pg_constraint WHERE conname='valogy_users_username_not_null' 
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.2ms)[0m  [1mALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (7.6ms)[0m  INSERT INTO "slots" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Wed, 17 Sep 2014 15:16:02 UTC +00:00], ["updated_at", Wed, 17 Sep 2014 15:16:02 UTC +00:00]]
+PG::CheckViolation: ERROR:  new row for relation "slots" violates check constraint "valogy_slots_sheet_id_not_null"
+DETAIL:  Failing row contains (3, null, 2014-09-17 15:16:02.06635, 2014-09-17 15:16:02.06635).
+: INSERT INTO "slots" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (2.0ms)[0m  [1mINSERT INTO "slots" ("created_at", "sheet_id", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Wed, 17 Sep 2014 15:16:02 UTC +00:00], ["sheet_id", 1], ["updated_at", Wed, 17 Sep 2014 15:16:02 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mSELECT * FROM pg_constraint WHERE conname='valogy_slots_sheet_id_not_null' [0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  SELECT * FROM pg_constraint WHERE conname='valogy_slots_sheet_id_not_null' 
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "users" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Wed, 17 Sep 2014 15:16:02 UTC +00:00], ["updated_at", Wed, 17 Sep 2014 15:16:02 UTC +00:00]]
+PG::CheckViolation: ERROR:  new row for relation "users" violates check constraint "valogy_users_username_not_null"
+DETAIL:  Failing row contains (4, null, 2014-09-17 15:16:02.1039, 2014-09-17 15:16:02.1039).
+: INSERT INTO "users" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "users" ("created_at", "updated_at", "username") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Wed, 17 Sep 2014 15:16:02 UTC +00:00], ["updated_at", Wed, 17 Sep 2014 15:16:02 UTC +00:00], ["username", "foobar"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mSELECT * FROM pg_constraint WHERE conname='valogy_users_username_not_null' [0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  SELECT * FROM pg_constraint WHERE conname='valogy_users_username_not_null' 
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.2ms)[0m  [1mALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (7.1ms)[0m  INSERT INTO "slots" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Wed, 17 Sep 2014 15:20:42 UTC +00:00], ["updated_at", Wed, 17 Sep 2014 15:20:42 UTC +00:00]]
+PG::CheckViolation: ERROR:  new row for relation "slots" violates check constraint "valogy_slots_sheet_id_not_null"
+DETAIL:  Failing row contains (5, null, 2014-09-17 15:20:42.761028, 2014-09-17 15:20:42.761028).
+: INSERT INTO "slots" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"
+  [1m[36m (0.3ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (1.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "slots" ("created_at", "sheet_id", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Wed, 17 Sep 2014 15:20:42 UTC +00:00], ["sheet_id", 1], ["updated_at", Wed, 17 Sep 2014 15:20:42 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.6ms)[0m  [1mSELECT * FROM pg_constraint WHERE conname='valogy_slots_sheet_id_not_null' [0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  SELECT * FROM pg_constraint WHERE conname='valogy_slots_sheet_id_not_null' 
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "users" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", Wed, 17 Sep 2014 15:20:42 UTC +00:00], ["updated_at", Wed, 17 Sep 2014 15:20:42 UTC +00:00]]
+PG::CheckViolation: ERROR:  new row for relation "users" violates check constraint "valogy_users_username_not_null"
+DETAIL:  Failing row contains (6, null, 2014-09-17 15:20:42.797656, 2014-09-17 15:20:42.797656).
+: INSERT INTO "users" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "users" ("created_at", "updated_at", "username") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Wed, 17 Sep 2014 15:20:42 UTC +00:00], ["updated_at", Wed, 17 Sep 2014 15:20:42 UTC +00:00], ["username", "foobar"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mSELECT * FROM pg_constraint WHERE conname='valogy_users_username_not_null' [0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE slots ADD CONSTRAINT
+ valogy_slots_sheet_id_not_null CHECK (sheet_id IS NOT NULL)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE users ADD CONSTRAINT
+ valogy_users_username_not_null CHECK (username IS NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  SELECT * FROM pg_constraint WHERE conname='valogy_users_username_not_null' 
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m

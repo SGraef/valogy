@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140908105400) do
   end
 
   create_table "slots", force: true do |t|
+    t.integer  "sheet_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

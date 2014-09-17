@@ -18,5 +18,9 @@ RSpec.describe User, :type => :model do
       Valogy::Parser.parse("#{fixture_path}/test.owl")
       expect {User.create!}.to raise_error
     end
+    it "raise no error if fullfilled constraints" do
+      Valogy::Parser.parse("#{fixture_path}/test.owl")
+      expect {User.create!(username: "foobar")}.not_to raise_error
+    end
   end
 end

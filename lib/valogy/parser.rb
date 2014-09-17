@@ -3,7 +3,7 @@ module Valogy
     EXACTLY  = "qualifiedCardinality"
     PROPERTY = "onProperty"
 
-    attr_accessor :constraints
+    attr_accessor :constraints, :inverse_constraints
 
     def open_file(file_path)
       file = File.open(file_path)
@@ -16,6 +16,7 @@ module Valogy
       parser = self.new
       parser.open_file(file)
       parser.constraints = Hash.new
+      parser.inverse_constraints = Hash.new
       parser.all_constraints
       parser.all_classes
     end
@@ -45,17 +46,25 @@ module Valogy
         name = name_with_iri.split("#").last
         obj.children.each do |sub|
           case sub.name
-          when "range"
-            datatype_with_iri = sub.attributes["resource"].value
-            @datatype = datatype_with_iri.split("#").last
+          when "domain"
+            field_with_iri = sub.attributes["resource"].value
+            @field = field_with_iri.split("#").last
             break
           when "range"
             range_with_iri = sub.attributes["resource"].value
-            @range = range_with_iri.split("#").last
+            @range = range_with_iri.split("#").last.downcase
+            break
+          when "inverseOf"
+              inverse_with_iri = sub.attributes["resource"].value
+              @inverse = inverse_with_iri.split("#").last
             break
           end
         end
-        prop = ObjectProperty.new(name, @datatype, @range)
+        prop = ObjectProperty.new(name, @field, @range, @inverse)
+        if @inverse
+          self.constraints[@inverse.to_sym].name_of_inverse = name
+          self.inverse_constraints[name.to_sym] = prop
+        end
         self.constraints[name.to_sym] = prop
       end
     end
@@ -77,6 +86,9 @@ module Valogy
       property_name = extract_qualified_name(element.attributes["resource"].value)
       constraint = self.constraints[property_name.to_sym]
       column_name = constraint.label || property_name.sub("has","").downcase
+      if property_name.include?("belongsTo")
+        column_name = column_name + "_id"
+      end
       return column_name
     end
 
