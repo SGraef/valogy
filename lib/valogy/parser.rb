@@ -2,20 +2,64 @@ module Valogy
   class Parser
     EXACTLY  = "qualifiedCardinality"
     PROPERTY = "onProperty"
-    
+
+    attr_accessor :constraints
+
     def open_file(file_path)
       file = File.open(file_path)
       @ontology = Nokogiri::XML(file) do |config|
         config.noblanks
       end
     end
-      
+
     def self.parse(file)
       parser = self.new
       parser.open_file(file)
+      parser.constraints = Hash.new
+      parser.all_constraints
       parser.all_classes
     end
-    
+
+    def all_constraints
+      data_props = @ontology.xpath("//owl:DatatypeProperty")
+      data_props.each do |data|
+        name_with_iri = data.attributes["about"].value
+        name = name_with_iri.split("#").last
+        data.children.each do |sub|
+          case sub.name
+          when "range"
+            datatype_with_iri = sub.attributes["resource"].value
+            @datatype = datatype_with_iri.split("#").last
+            break
+          when "label"
+            @label = sub.children.to_s
+            break
+          end
+        end
+        prop = DataProperty.new(name, @datatype, @label)
+        self.constraints[name.to_sym] = prop
+      end
+      obj_props = @ontology.xpath("//owl:ObjectProperty")
+      obj_props.each do |obj|
+        name_with_iri = obj.attributes["about"].value
+        name = name_with_iri.split("#").last
+        obj.children.each do |sub|
+          case sub.name
+          when "range"
+            datatype_with_iri = sub.attributes["resource"].value
+            @datatype = datatype_with_iri.split("#").last
+            break
+          when "range"
+            range_with_iri = sub.attributes["resource"].value
+            @range = range_with_iri.split("#").last
+            break
+          end
+        end
+        prop = ObjectProperty.new(name, @datatype, @range)
+        self.constraints[name.to_sym] = prop
+      end
+    end
+
     def all_classes
       classes = @ontology.xpath("//owl:Class")
       classes.each do |c|
@@ -23,24 +67,27 @@ module Valogy
         restrictions(c).each { |restriction| resolverestriction(restriction) }
       end
     end
-    
+
     def determine_model(element)
       klass = extract_qualified_name(element.attributes["about"].value)
       Object.const_get(klass)
     end
-    
+
     def determine_column(element)
-      extract_qualified_name(element.attributes["resource"].value).sub("has","").downcase
+      property_name = extract_qualified_name(element.attributes["resource"].value)
+      constraint = self.constraints[property_name.to_sym]
+      column_name = constraint.label || property_name.sub("has","").downcase
+      return column_name
     end
-    
+
     def extract_qualified_name(value)
       value.split("#").last
     end
-    
+
     def restrictions(element)
       element.xpath(".//owl:Restriction")
     end
-    
+
     def resolverestriction(restriction)
       restriction.children.each do |constr|
         case constr.name
@@ -56,6 +103,6 @@ module Valogy
         end
       end
     end
-    
+
   end
 end

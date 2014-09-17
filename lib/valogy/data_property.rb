@@ -1,5 +1,5 @@
 module Valogy
-  class ObjectProperty
+  class DataProperty
     attr_accessor :label, :name, :datatype
 
     def initialize(name, datatype, label)
