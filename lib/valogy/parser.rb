@@ -2,8 +2,9 @@ module Valogy
   class Parser
     EXACTLY  = "qualifiedCardinality"
     PROPERTY = "onProperty"
+    MINIMAL  = "minQualifiedCardinality"
 
-    attr_accessor :constraints, :inverse_constraints
+    attr_accessor :constraints, :inverse_constraints, :classes
 
     def open_file(file_path)
       file = File.open(file_path)
@@ -49,21 +50,18 @@ module Valogy
           when "domain"
             field_with_iri = sub.attributes["resource"].value
             @field = field_with_iri.split("#").last
-            break
           when "range"
             range_with_iri = sub.attributes["resource"].value
             @range = range_with_iri.split("#").last.downcase
-            break
           when "inverseOf"
               inverse_with_iri = sub.attributes["resource"].value
               @inverse = inverse_with_iri.split("#").last
-            break
           end
         end
         prop = ObjectProperty.new(name, @field, @range, @inverse)
         if @inverse
-          self.constraints[@inverse.to_sym].name_of_inverse = name
-          self.inverse_constraints[name.to_sym] = prop
+          self.inverse_constraints[@inverse.to_sym] = prop
+          @inverse = nil
         end
         self.constraints[name.to_sym] = prop
       end
@@ -86,7 +84,7 @@ module Valogy
       property_name = extract_qualified_name(element.attributes["resource"].value)
       constraint = self.constraints[property_name.to_sym]
       column_name = constraint.label || property_name.sub("has","").downcase
-      if property_name.include?("belongsTo")
+      if property_name.include?("belongsTo") || column_name == "user"
         column_name = column_name + "_id"
       end
       return column_name
@@ -105,12 +103,20 @@ module Valogy
         case constr.name
         when PROPERTY
           @column = determine_column(constr)
+          @constraint_name = extract_qualified_name(constr.attributes["resource"].value)
         when EXACTLY
           count = constr.child.text.to_i
           if @column
             if count == 1
               @model.new.existence(@column)
             end
+          end
+          break
+        when MINIMAL
+          foreign_table = Object.const_get(self.inverse_constraints[@constraint_name.to_sym].label.capitalize).table_name
+          count = constr.child.text.to_i
+          if @column
+              @model.new.minimal(@column, count, foreign_table)
           end
         end
       end

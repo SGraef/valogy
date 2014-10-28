@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20140908105400) do
   enable_extension "plpgsql"
 
   create_table "sheets", force: true do |t|
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -24,6 +24,23 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://luna-wolf.de/ontologies/werwolf#validPassword -->
+
+    <owl:AnnotationProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#validPassword"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Object Properties
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -36,6 +53,7 @@
 
     <owl:ObjectProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#belongsToSheet">
         <rdfs:range rdf:resource="http://luna-wolf.de/ontologies/werwolf#Sheet"/>
+        <rdfs:domain rdf:resource="http://luna-wolf.de/ontologies/werwolf#Sheet"/>
         <owl:inverseOf rdf:resource="http://luna-wolf.de/ontologies/werwolf#hasSlot"/>
     </owl:ObjectProperty>
     
@@ -96,6 +114,14 @@
     <owl:DatatypeProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#hasName">
         <rdfs:label rdf:datatype="&xsd;string">username</rdfs:label>
         <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://luna-wolf.de/ontologies/werwolf#hasPassword -->
+
+    <owl:DatatypeProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#hasPassword">
+        <validPassword rdf:datatype="&xsd;string">^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&amp;]).{3,}$</validPassword>
     </owl:DatatypeProperty>
     
 
