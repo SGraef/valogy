@@ -1,5 +1,4 @@
-class Sheet < ActiveRecord::Base
-  include Valogy::Query
-
+class Sheet < Valogy::BaseModel
+  belongs_to :user
   has_many :slots
 end

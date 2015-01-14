@@ -1,3 +1,3 @@
-class User < ActiveRecord::Base
-  include Valogy::Query
+class User < Valogy::BaseModel
+
 end

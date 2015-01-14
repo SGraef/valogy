@@ -24,7 +24,7 @@ production:
   adapter: postgresql
   encoding: unicode
   template: template0
-  database: valogy_production
+  database: valogy
   username: postgres
   password:
   pool: 5
