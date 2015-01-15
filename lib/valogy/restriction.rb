@@ -1,11 +1,10 @@
-class Restriction
+module Valogy
+  class Restriction
 
-  attr_accessor :property, :entity, :additional_restriction
+    attr_accessor :property, :entity, :additional_restriction, :count, :column
 
-  def initialize(property, entitiy, restriction)
-    self.property = property
-    self.entity = entity
-    additional_restriction = restriction
+    def generate_function_name(constraint_type, column, table)
+      "valogy_check_#{constraint_type}_#{column}_on_#{table}"
+    end
   end
-
 end

@@ -18,18 +18,22 @@ ActiveRecord::Schema.define(version: 20140908105400) do
 
   create_table "sheets", force: true do |t|
     t.integer  "user_id"
+    t.boolean  "consistent"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "slots", force: true do |t|
     t.integer  "sheet_id"
+    t.boolean  "consistent"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
     t.string   "username"
+    t.string   "password"
+    t.boolean  "consistent"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

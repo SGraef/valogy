@@ -4,7 +4,8 @@ module Valogy
     PROPERTY = "onProperty"
     MINIMAL  = "minQualifiedCardinality"
 
-    attr_accessor :constraints, :inverse_constraints, :classes
+    attr_accessor :constraints, :inverse_constraints, :classes, :entities
+    attr_accessor :axioms
 
     def open_file(file_path)
       file = File.open(file_path)
@@ -18,61 +19,103 @@ module Valogy
       parser.open_file(file)
       parser.constraints = Hash.new
       parser.inverse_constraints = Hash.new
+      parser.entities = Hash.new
+      parser.axioms = Hash.new
       parser.all_constraints
+      parser.all_axioms
       parser.all_classes
     end
 
     def all_constraints
       data_props = @ontology.xpath("//owl:DatatypeProperty")
       data_props.each do |data|
+        prop = DataProperty.new
         name_with_iri = data.attributes["about"].value
-        name = name_with_iri.split("#").last
+        prop.name = name_with_iri.split("#").last
         data.children.each do |sub|
           case sub.name
           when "range"
             datatype_with_iri = sub.attributes["resource"].value
-            @datatype = datatype_with_iri.split("#").last
+            prop.datatype = datatype_with_iri.split("#").last
             break
           when "label"
-            @label = sub.children.to_s
+            prop.column = sub.children.to_s
             break
           end
         end
-        prop = DataProperty.new(name, @datatype, @label)
-        self.constraints[name.to_sym] = prop
+        self.constraints[prop.name.to_sym] = prop
       end
       obj_props = @ontology.xpath("//owl:ObjectProperty")
       obj_props.each do |obj|
+        prop = ObjectProperty.new
         name_with_iri = obj.attributes["about"].value
         name = name_with_iri.split("#").last
+        prop.name = name
         obj.children.each do |sub|
           case sub.name
           when "domain"
             field_with_iri = sub.attributes["resource"].value
-            @field = field_with_iri.split("#").last
+            prop.object = field_with_iri.split("#").last
           when "range"
             range_with_iri = sub.attributes["resource"].value
-            @range = range_with_iri.split("#").last.downcase
+            prop.field = range_with_iri.split("#").last.downcase
           when "inverseOf"
-              inverse_with_iri = sub.attributes["resource"].value
-              @inverse = inverse_with_iri.split("#").last
+            inverse_with_iri = sub.attributes["resource"].value
+            name_of_inverse = inverse_with_iri.split("#").last
+            prop.inverse = self.constraints[name_of_inverse.to_sym] || name_of_inverse
           end
         end
-        prop = ObjectProperty.new(name, @field, @range, @inverse)
-        if @inverse
-          self.inverse_constraints[@inverse.to_sym] = prop
-          @inverse = nil
+        if prop.inverse
+          if prop.inverse.class == String
+            self.inverse_constraints[prop.inverse.to_sym] = prop
+          else
+            self.inverse_constraints[prop.inverse.name.to_sym] = prop
+          end
+        elsif self.inverse_constraints.has_key?(name.to_sym)
+          inverse = self.inverse_constraints[name.to_sym]
+          prop.inverse = inverse
+          prop.inverse.inverse = prop
         end
         self.constraints[name.to_sym] = prop
       end
     end
 
+    def all_axioms
+      axioms = @ontology.xpath("//owl:Axiom")
+      axioms.each do |axiom|
+        ax = Axiom.new
+        axiom.children.each do |sub|
+          case sub.name
+          when "annotatedSource"
+            ax.corresponding_model = Object.const_get(extract_qualified_name(sub.attributes["resource"].value))
+          when "annotatedProperty"
+
+          when "annotatedTarget"
+            constraint_with_iri = sub.children.first.children.
+                                  first.attributes["resource"].value
+            ax.constraint =
+            constraints[extract_qualified_name(constraint_with_iri).to_sym]
+          else
+            ax.name = sub.name
+            ax.additional_information = sub.children.first.to_s
+          end
+        end
+        self.axioms[ax.name.to_sym] = ax
+      end
+    end
+
     def all_classes
       classes = @ontology.xpath("//owl:Class")
-      classes.each do |c|
-        @model = determine_model(c)
-        restrictions(c).each { |restriction| resolverestriction(restriction) }
+      classes.each do |klass|
+        modelname = extract_qualified_name(klass.attributes["about"].value)
+        @model = determine_model(klass)
+        entity = Entity.new(@model)
+        entities[modelname.to_sym] = entity
+        build_restrictions(restrictions(klass), entity)
+        resolve_restriction(entity)
+      #  restrictions(klass).each { |restriction| resolverestriction(restriction) }
       end
+
     end
 
     def determine_model(element)
@@ -83,9 +126,14 @@ module Valogy
     def determine_column(element)
       property_name = extract_qualified_name(element.attributes["resource"].value)
       constraint = self.constraints[property_name.to_sym]
-      column_name = constraint.label || property_name.sub("has","").downcase
-      if property_name.include?("belongsTo") || column_name == "user"
-        column_name = column_name + "_id"
+      if constraint.class == ObjectProperty
+        column_name = constraint.field || property_name.sub("has","").downcase
+        if property_name.include?("belongsTo") || column_name == "user"
+          column_name = column_name + "_id"
+        end
+      elsif constraint.class == DataProperty
+        column_name = constraint.column || property_name.sub("has","").downcase
+        constraint.column = column_name unless constraint.column
       end
       return column_name
     end
@@ -98,6 +146,51 @@ module Valogy
       element.xpath(".//owl:Restriction")
     end
 
+    def build_restrictions(restrictions, entity)
+      restrictions.each do |restriction|
+        restriction.children.each do |constr|
+          case constr.name
+          when PROPERTY
+            @column = determine_column(constr)
+            @constraint_name = extract_qualified_name(constr.attributes["resource"].value)
+
+          when EXACTLY
+            count = constr.child.text.to_i
+
+            if @column
+              if count == 1
+                restrict = ExactlyRestriction.new
+                restrict.entity = entity
+                restrict.property= self.constraints[@constraint_name.to_sym]
+                restrict.column = @column
+                entity.add_restriction(restrict)
+              end
+            end
+            break
+          when MINIMAL
+
+            restrict = MinimalRestriction.new
+            foreign_table = Object.const_get(self.constraints[@constraint_name.to_sym].field.capitalize).table_name
+            restrict.entity = entity
+            restrict.foreign_table = foreign_table
+            #TODO Better column Detection
+            restrict.column = entity.corresponding_model.name.downcase + "_id"
+            count = constr.child.text.to_i
+            restrict.count = count
+            entity.add_restriction(restrict)
+
+          end
+        end
+      end
+    end
+
+    def resolve_restriction(entity)
+      entity.restrictions.each do |restriction|
+      restriction.resolve
+      end
+    end
+=begin
+%old
     def resolverestriction(restriction)
       restriction.children.each do |constr|
         case constr.name
@@ -113,14 +206,14 @@ module Valogy
           end
           break
         when MINIMAL
-          foreign_table = Object.const_get(self.inverse_constraints[@constraint_name.to_sym].label.capitalize).table_name
+          foreign_table = Object.const_get(self.inverse_constraints[@constraint_name.to_sym].field.capitalize).table_name
           count = constr.child.text.to_i
           if @column
-              @model.new.minimal(@column, count, foreign_table)
+            @model.new.minimal(@column, count, foreign_table)
           end
         end
       end
     end
-
+=end
   end
 end
