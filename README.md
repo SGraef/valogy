@@ -1,3 +1,3 @@
 = Valogy
 
-This project rocks and uses MIT-LICENSE.
+Valogy is an Rails-Gem for using OWL-Ontologies
