@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Sheet, :type => :model do
 
   let(:user)  {User.create!(username: "foobar", password: "123456")}
-  let(:sheet) {Sheet.new(user: user, consistent: false)}
+  let(:sheet) {Sheet.new(user: user)}
 
 
   context "generating a sheet" do
@@ -14,7 +14,7 @@ RSpec.describe Sheet, :type => :model do
 
     it "should raise no error for an sheet with an slot" do
       Valogy::Parser.parse("#{fixture_path}/test.owl")
-      sheet = Sheet.new(user: user, slots: [Slot.create], consistent: false)
+      sheet = Sheet.new(user: user, slots: [Slot.new], consistent: false)
       expect{sheet.save!}.not_to raise_error
     end
   end
