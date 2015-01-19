@@ -15,7 +15,7 @@ module Valogy
       RETURNS boolean AS
       $$
       BEGIN
-      return ((SELECT COUNT(*) FROM #{other_table} WHERE #{column} = $1) >= #{count} OR ((SELECT consistent FROM #{self.entity.corresponding_model.table_name} WHERE id = $1) = false));
+      return ((SELECT COUNT(#{other_table}.#{column}) FROM #{other_table} WHERE #{column} = $1) >= #{count} OR (SELECT CASE #{self.entity.corresponding_model.table_name}.consistent WHEN true THEN true ELSE false END FROM #{self.entity.corresponding_model.table_name} WHERE id = $1));
       END
       $$ LANGUAGE 'plpgsql';")
     end

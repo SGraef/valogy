@@ -7,9 +7,6 @@ module Valogy
     def set_consistency
       self.consistent = true
       self.save!
-      puts "====================#{self.class}=============="
-      puts "====================#{self.try(:slots).inspect}=============="
-      puts "====================#{self.inspect}=============="
     end
 
     def consistent?
