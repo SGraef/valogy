@@ -1,0 +1,5 @@
+de:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: Das Stimmt was nicht

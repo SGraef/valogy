@@ -3,9 +3,9 @@ module Valogy
     EXACTLY  = "qualifiedCardinality"
     PROPERTY = "onProperty"
     MINIMAL  = "minQualifiedCardinality"
-
+    LANGUAGES = ["de","en", "fr", "es"]
     attr_accessor :constraints, :inverse_constraints, :classes, :entities
-    attr_accessor :axioms
+    attr_accessor :axioms, :validation_hash
 
     def open_file(file_path)
       file = File.open(file_path)
@@ -21,9 +21,15 @@ module Valogy
       parser.inverse_constraints = Hash.new
       parser.entities = Hash.new
       parser.axioms = Hash.new
+      parser.validation_hash = Hash.new
+      LANGUAGES.each do |lang|
+        parser.validation_hash[lang] = {"valogy" => {"model" => Hash.new}}
+      end
       parser.all_constraints
       parser.all_axioms
       parser.all_classes
+      File.open("#{Rails.root}/config/locales/valogy.yml", 'w') {|f| f.write parser.validation_hash.to_yaml }
+
     end
 
     def all_constraints
@@ -63,6 +69,11 @@ module Valogy
             inverse_with_iri = sub.attributes["resource"].value
             name_of_inverse = inverse_with_iri.split("#").last
             prop.inverse = self.constraints[name_of_inverse.to_sym] || name_of_inverse
+          when "comment"
+            comment = Comment.new
+            comment.text = sub.children.text
+            comment.lang = sub.attributes["lang"].value
+            prop.add_comment(comment)
           end
         end
         if prop.inverse
@@ -113,7 +124,7 @@ module Valogy
         entities[modelname.to_sym] = entity
         build_restrictions(restrictions(klass), entity)
         resolve_restriction(entity)
-      #  restrictions(klass).each { |restriction| resolverestriction(restriction) }
+        #  restrictions(klass).each { |restriction| resolverestriction(restriction) }
       end
 
     end
@@ -177,6 +188,7 @@ module Valogy
             restrict.column = entity.corresponding_model.name.downcase + "_id"
             count = constr.child.text.to_i
             restrict.count = count
+            restrict.property= self.constraints[@constraint_name.to_sym]
             entity.add_restriction(restrict)
 
           end
@@ -187,6 +199,12 @@ module Valogy
     def resolve_restriction(entity)
       entity.restrictions.each do |restriction|
       restriction.resolve
+      name = restriction.constraint_name
+      property = restriction.property
+      property.comments.each do |comment|
+        validation_hash[comment.lang]['valogy'][name] = comment.text
+        validation_hash[comment.lang]['valogy']['model'][name] = restriction.column
+      end
       end
     end
 =begin

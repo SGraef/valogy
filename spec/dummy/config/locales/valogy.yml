@@ -1,0 +1,15 @@
+---
+de:
+  valogy:
+    model:
+      valogy_slots_sheet_id_minimal: sheet_id
+    valogy_slots_sheet_id_minimal: Dies ist nicht erfüllt
+en:
+  valogy:
+    model: {}
+fr:
+  valogy:
+    model: {}
+es:
+  valogy:
+    model: {}

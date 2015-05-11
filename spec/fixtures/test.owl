@@ -32,6 +32,12 @@
     
 
 
+    <!-- http://luna-wolf.de/ontologies/werwolf#lang -->
+
+    <owl:AnnotationProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#lang"/>
+    
+
+
     <!-- http://luna-wolf.de/ontologies/werwolf#validPassword -->
 
     <owl:AnnotationProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#validPassword"/>
@@ -85,6 +91,7 @@
     <!-- http://luna-wolf.de/ontologies/werwolf#hasSlot -->
 
     <owl:ObjectProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#hasSlot">
+        <rdfs:comment xml:lang="de">Dies ist nicht erfüllt</rdfs:comment>
         <rdfs:domain rdf:resource="http://luna-wolf.de/ontologies/werwolf#Sheet"/>
         <rdfs:range rdf:resource="http://luna-wolf.de/ontologies/werwolf#Slot"/>
     </owl:ObjectProperty>

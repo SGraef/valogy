@@ -5,6 +5,7 @@ module Valogy
   require 'valogy/entity'
   require 'valogy/axiom'
   require 'valogy/query'
+  require 'valogy/comment'
   require 'valogy/parser'
   require 'valogy/restriction'
   require 'valogy/restrictions/existence_restriction'

@@ -10,8 +10,9 @@ module Valogy
     end
 
     def existence
+      self.constraint_name = "valogy_#{entity.corresponding_model.table_name}_#{column}_not_null"
     entity.corresponding_model.connection.execute("ALTER TABLE #{entity.corresponding_model.table_name} ADD CONSTRAINT
-    valogy_#{entity.corresponding_model.table_name}_#{column}_not_null CHECK (#{column} IS NOT NULL)")
+    #{self.constraint_name} CHECK (#{column} IS NOT NULL)")
     end
 
     def existence_between_models

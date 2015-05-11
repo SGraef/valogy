@@ -1,19 +1,17 @@
 module Valogy
   class DataProperty
-    attr_accessor :column, :name, :datatype, :axioms
+    attr_accessor :column, :name, :datatype, :axioms, :comments
 
-    def initialize(name, datatype, column)
-      self.name = name
-      self.datatype = datatype
-      self.column = column
-    end
-
-    def initialize()
-
+    def initialize
+      self.comments = []
     end
 
     def axioms
       @axioms || {}
+    end
+
+    def add_comment(comment)
+      comments << comment
     end
 
   end

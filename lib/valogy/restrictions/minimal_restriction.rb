@@ -6,8 +6,9 @@ module Valogy
     def resolve
       function_name  = generate_function_name("minimal_occurence", column, foreign_table)
       generate_minimal_function(column, count, foreign_table, function_name)
+      self.constraint_name = "valogy_#{foreign_table}_#{column}_minimal"
       entity.corresponding_model.connection.execute("ALTER TABLE #{self.entity.corresponding_model.table_name} ADD CONSTRAINT
-      valogy_#{foreign_table}_#{column}_minimal CHECK (#{function_name}(id))")
+      #{self.constraint_name} CHECK (#{function_name}(id))")
     end
 
     def generate_minimal_function(column, count, other_table, function_name)
