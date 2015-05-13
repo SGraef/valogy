@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.version     = Valogy::VERSION
   spec.authors     = ["Sascha Graef"]
   spec.email       = ["sgraef@informatik.uni-bremen.de"]
-  spec.homepage    = ""
+  spec.homepage    = "https://github.com/SGraef/valogy/"
   spec.summary     = "Validate objects via OWL ontology"
   spec.description = ""
 
@@ -28,5 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.2"
   spec.add_development_dependency "rspec-rails", "~> 3.0"
   spec.add_development_dependency "pry-rails", "~> 0.3"
-  
+
 end

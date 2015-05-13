@@ -12,3 +12,15 @@ gemspec
 
 # To use debugger
 # gem 'debugger'
+
+
+group :test do
+  # Feature-Verfahren für Akzeptanztests
+  gem 'cucumber-rails', '~> 1.3', :require => false
+
+  # Testen von Views (HTML und Javascript)
+  gem 'capybara', '~> 2.0'
+
+  # Datenbank nach Tests aufräumen
+  gem 'database_cleaner', '~> 1.3.0'
+end
