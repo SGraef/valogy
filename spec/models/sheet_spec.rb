@@ -9,7 +9,7 @@ RSpec.describe Sheet, :type => :model do
   context "generating a sheet" do
     it "should raise an error for an sheet without an slot" do
       Valogy::Parser.parse("#{fixture_path}/test.owl")
-      expect{sheet.save!}.to raise_error(ActiveRecord::StatementInvalid)
+      expect{sheet.save!}.to raise_error(ActiveRecord::RecordInvalid)
     end
 
     it "should raise no error for an sheet with an slot" do
