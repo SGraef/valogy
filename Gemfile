@@ -23,4 +23,7 @@ group :test do
 
   # Datenbank nach Tests aufräumen
   gem 'database_cleaner', '~> 1.3.0'
+	
+	#launch automtically webbrowser in tests
+	gem 'launchy'
 end
