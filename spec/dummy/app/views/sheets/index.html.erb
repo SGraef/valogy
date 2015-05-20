@@ -2,7 +2,8 @@
 
 <table>
   <thead>
-    <tr>
+		<tr>
+			<th>ID</th>
       <th></th>
       <th></th>
       <th></th>
@@ -11,7 +12,8 @@
 
   <tbody>
     <% @sheets.each do |sheet| %>
-      <tr>
+			<tr>
+				<td><%= sheet.id %></td>
         <td><%= link_to 'Show', sheet %></td>
         <td><%= link_to 'Edit', edit_sheet_path(sheet) %></td>
         <td><%= link_to 'Destroy', sheet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
