@@ -1,5 +1,5 @@
 module Valogy
-  class ExactlyRestriction < Valogy::Restriction
+  class ExistenceRestriction < Valogy::Restriction
 
     def resolve
       if property.class == DataProperty
@@ -16,7 +16,9 @@ module Valogy
     end
 
     def existence_between_models
-
+        self.constraint_name = "valogy_#{entity.corresponding_model.table_name}_#{column}_not_null"
+        entity.corresponding_model.connection.execute("ALTER TABLE #{entity.corresponding_model.table_name} ADD CONSTRAINT
+        #{self.constraint_name} CHECK (#{column} IS NOT NULL)")
     end
 
   end

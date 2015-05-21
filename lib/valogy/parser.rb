@@ -3,7 +3,8 @@ module Valogy
     EXACTLY  = "qualifiedCardinality"
     PROPERTY = "onProperty"
     MINIMAL  = "minQualifiedCardinality"
-    LANGUAGES = ["de","en", "fr", "es"]
+    EXISTENCE= "someValuesFrom"
+    LANGUAGES= ["de","en", "fr", "es"]
     attr_accessor :constraints, :inverse_constraints, :classes, :entities
     attr_accessor :axioms, :validation_hash
 
@@ -139,7 +140,7 @@ module Valogy
       constraint = self.constraints[property_name.to_sym]
       if constraint.class == ObjectProperty
         column_name = constraint.field || property_name.sub("has","").downcase
-        if property_name.include?("belongsTo") || column_name == "user"
+        if property_name.include?("belongsTo")
           column_name = column_name + "_id"
         end
       elsif constraint.class == DataProperty
@@ -167,19 +168,27 @@ module Valogy
 
           when EXACTLY
             count = constr.child.text.to_i
-
-            if @column
-              if count == 1
-                restrict = ExactlyRestriction.new
+            restrict = ExactlyRestriction.new
+            property = self.constraints[@constraint_name.to_sym]
+            column = entity.corresponding_model.name.downcase + "_id"
+              if property.name.include?("belongsTo")
+                restrict = ExistenceRestriction.new
                 restrict.entity = entity
-                restrict.property= self.constraints[@constraint_name.to_sym]
-                restrict.column = @column
+                restrict.column = property.field + "_id"
+                restrict.property= property
+                entity.add_restriction(restrict)
+              else
+                foreign_table = Object.const_get(property.field.capitalize).table_name
+                restrict.entity = entity
+                restrict.foreign_table = foreign_table
+                #TODO Better column Detection
+                restrict.column = column
+                count = constr.child.text.to_i
+                restrict.count = count
+                restrict.property= property
                 entity.add_restriction(restrict)
               end
-            end
-            break
           when MINIMAL
-
             restrict = MinimalRestriction.new
             foreign_table = Object.const_get(self.constraints[@constraint_name.to_sym].field.capitalize).table_name
             restrict.entity = entity
@@ -190,7 +199,25 @@ module Valogy
             restrict.count = count
             restrict.property= self.constraints[@constraint_name.to_sym]
             entity.add_restriction(restrict)
-
+          when EXISTENCE
+            property = self.constraints[@constraint_name.to_sym]
+            if property.class == DataProperty
+              restrict = ExistenceRestriction.new
+              restrict.entity = entity
+              restrict.column = @column
+              restrict.property= self.constraints[@constraint_name.to_sym]
+              entity.add_restriction(restrict)
+            elsif property.class == ObjectProperty
+              restrict = MinimalRestriction.new
+              foreign_table = Object.const_get(self.constraints[@constraint_name.to_sym].field.capitalize).table_name
+              restrict.entity = entity
+              restrict.foreign_table = foreign_table
+              #TODO Better column Detection
+              restrict.column = entity.corresponding_model.name.downcase + "_id"
+              restrict.count = 1
+              restrict.property= self.constraints[@constraint_name.to_sym]
+              entity.add_restriction(restrict)
+            end
           end
         end
       end
