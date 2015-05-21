@@ -9,10 +9,15 @@ module Valogy
       self.save
     rescue ActiveRecord::StatementInvalid => e
       validation = e.message.match('check\ constraint\ \\"([\S]*)\\"')[1]
-      error_string = I18n.t("valogy.#{validation}")
-      self.errors[I18n.t("valogy.model.#{validation}").to_sym] << error_string
-      raise(ActiveRecord::RecordInvalid.new(self))
+      if validation.include?("valogy")
+				error_string = I18n.t("valogy.#{validation}")
+				self.errors[I18n.t("valogy.model.#{validation}").to_sym] << error_string
+				raise(ActiveRecord::RecordInvalid.new(self))
+			else
+				raise(e)
+			end
     end
+
 
     def consistent?
       self.consistent
