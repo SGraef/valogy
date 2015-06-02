@@ -235,8 +235,9 @@ module Valogy
 				end
 				if property.comments.empty?
 					LANGUAGES.each do |lang|
-					validation_hash[lang]['valogy'][name] = DEFAULT_VALIDATION[lang]
-					validation_hash[lang]['valogy']['model'][name] = restriction.column
+						validation_hash[lang]['valogy'][name] = DEFAULT_VALIDATION[lang]
+						validation_hash[lang]['valogy']['model'][name] = restriction.column
+					end
 				end
       end
 
