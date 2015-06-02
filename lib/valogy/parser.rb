@@ -5,7 +5,8 @@ module Valogy
     MINIMAL  = "minQualifiedCardinality"
     EXISTENCE= "someValuesFrom"
     LANGUAGES= ["de","en", "fr", "es"]
-    attr_accessor :constraints, :inverse_constraints, :classes, :entities
+    DEFAULT_VALIDATION= {"de" => "Bitte überprüfen sie ihre Eingaben.", "en" => "Please check your information in the formular", "fr" => "S'il vous plaît vérifier vos entrées.", "es" => "Por favor, compruebe sus entradas."}
+		attr_accessor :constraints, :inverse_constraints, :classes, :entities
     attr_accessor :axioms, :validation_hash
 
     def open_file(file_path)
@@ -225,40 +226,20 @@ module Valogy
 
     def resolve_restriction(entity)
       entity.restrictions.each do |restriction|
-      restriction.resolve
-      name = restriction.constraint_name
-      property = restriction.property
-      property.comments.each do |comment|
-        validation_hash[comment.lang]['valogy'][name] = comment.text
-        validation_hash[comment.lang]['valogy']['model'][name] = restriction.column
+				restriction.resolve
+				name = restriction.constraint_name
+				property = restriction.property
+				property.comments.each do |comment|
+					validation_hash[comment.lang]['valogy'][name] = comment.text
+					validation_hash[comment.lang]['valogy']['model'][name] = restriction.column
+				end
+				if property.comments.empty?
+					LANGUAGES.each do |lang|
+					validation_hash[lang]['valogy'][name] = DEFAULT_VALIDATION[lang]
+					validation_hash[lang]['valogy']['model'][name] = restriction.column
+				end
       end
-      end
+
     end
-=begin
-%old
-    def resolverestriction(restriction)
-      restriction.children.each do |constr|
-        case constr.name
-        when PROPERTY
-          @column = determine_column(constr)
-          @constraint_name = extract_qualified_name(constr.attributes["resource"].value)
-        when EXACTLY
-          count = constr.child.text.to_i
-          if @column
-            if count == 1
-              @model.new.existence(@column)
-            end
-          end
-          break
-        when MINIMAL
-          foreign_table = Object.const_get(self.inverse_constraints[@constraint_name.to_sym].field.capitalize).table_name
-          count = constr.child.text.to_i
-          if @column
-            @model.new.minimal(@column, count, foreign_table)
-          end
-        end
-      end
-    end
-=end
   end
 end
