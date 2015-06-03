@@ -1,7 +1,8 @@
 Feature: Validation Feedback
-	
+
 	Background: Preparing the Database
 		Given The Ontology is successfully parsed
+		And There is an User
 
 	Scenario: Try to add an not valid Sheet
 		Given I'm on the create Sheets page

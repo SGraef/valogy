@@ -21,13 +21,11 @@ class SheetsController < ApplicationController
 
   # POST /sheets
   def create
-		st_params = sheet_params
-		puts st_params
-		if st_params[:generate_slots] == "1"
+
+		if params[:sheet][:generate_slots] == "1"
 			slot =  Slot.new
-			st_params.delete(:generate_slots)
 		end
-    @sheet = Sheet.new(st_params)
+    @sheet = Sheet.new(sheet_params)
 		@sheet.slots << slot if slot
     if @sheet.save
       redirect_to @sheet, notice: 'Sheet was successfully created.'
@@ -59,6 +57,6 @@ class SheetsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def sheet_params
-      params[:sheet].permit(:generate_slots)
+      params[:sheet].permit(:user_id)
     end
 end

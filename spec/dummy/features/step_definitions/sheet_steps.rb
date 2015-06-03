@@ -1,5 +1,9 @@
 Given(/^The Ontology is successfully parsed$/) do
-  Valogy::Parser.parse("#{Rails.root}/spec/fixtures/test.owl")	  
+  Valogy::Parser.parse("#{Rails.root}/spec/fixtures/test.owl")
+end
+
+Given(/^There is an User$/) do
+  User.create!(username: "foobar", password: "12345")
 end
 
 Given(/^I'm on the create Sheets page$/) do
