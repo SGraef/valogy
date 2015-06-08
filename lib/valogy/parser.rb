@@ -5,8 +5,8 @@ module Valogy
     MINIMAL  = "minQualifiedCardinality"
     EXISTENCE= "someValuesFrom"
     LANGUAGES= ["de","en", "fr", "es"]
-    DEFAULT_VALIDATION= {"de" => "Bitte überprüfen sie ihre Eingaben.", "en" => "Please check your information in the formular", "fr" => "S'il vous plaît vérifier vos entrées.", "es" => "Por favor, compruebe sus entradas."}
-		GET_ALL_CONSTRAINTS = "SELECT constraint_name, constraint_type FROM information_schema.table_constraints WHERE constraint_name LIKE 'valogy%'"
+    DEFAULT_VALIDATION= {"de" => "Bitte überprüfen sie ihre Eingaben.", "en" => "Please check your information", "fr" => "S'il vous plaît vérifier vos entrées.", "es" => "Por favor, compruebe sus entradas."}
+		GET_ALL_CONSTRAINTS = "SELECT constraint_name, table_name FROM information_schema.table_constraints WHERE constraint_name LIKE 'valogy%'"
 		GET_ALL_FUNCTIONS = "SELECT routine_name FROM information_schema.routines WHERE specific_schema NOT IN ('pg_catalog', 'information_schema') AND type_udt_name != 'trigger';"
 		attr_accessor :constraints, :inverse_constraints, :classes, :entities
     attr_accessor :axioms, :validation_hash
@@ -18,8 +18,22 @@ module Valogy
       end
     end
 
+    def clean_database
+      BaseModel.connection.execute(GET_ALL_CONSTRAINTS).each do |constraint|
+        BaseModel.connection.execute("ALTER TABLE #{constraint["table_name"]} DROP CONSTRAINT #{constraint["constraint_name"]}")
+      end
+			BaseModel.connection.execute(GET_ALL_FUNCTIONS).each do |function|
+				if function["routine_name"].include?("has_and_belongs_to_many")
+					BaseModel.connection.execute("DROP FUNCTION #{function["routine_name"]}(integer, integer)")
+				else
+					BaseModel.connection.execute("DROP FUNCTION #{function["routine_name"]}(integer)")
+				end
+			end
+    end
+
     def self.parse(file)
       parser = self.new
+      parser.clean_database
       parser.open_file(file)
       parser.constraints = Hash.new
       parser.inverse_constraints = Hash.new

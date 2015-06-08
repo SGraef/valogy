@@ -19,10 +19,10 @@ en:
       valogy_slots_sheet_id_not_null: sheet_id
       valogy_users_username_not_null: username
       valogy_users_password_not_null: password
-    valogy_sheets_user_id_not_null: Please check your information in the formular
-    valogy_slots_sheet_id_not_null: Please check your information in the formular
-    valogy_users_username_not_null: Please check your information in the formular
-    valogy_users_password_not_null: Please check your information in the formular
+    valogy_sheets_user_id_not_null: Please check your information
+    valogy_slots_sheet_id_not_null: Please check your information
+    valogy_users_username_not_null: Please check your information
+    valogy_users_password_not_null: Please check your information
 fr:
   valogy:
     model:
