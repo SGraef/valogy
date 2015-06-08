@@ -1,4 +1,5 @@
 *catalog*.xml
 *.log
+*.swp
 
 spec/dummy/tmp
