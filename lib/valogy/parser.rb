@@ -182,57 +182,70 @@ module Valogy
           when PROPERTY
             @column = determine_column(constr)
             @constraint_name = extract_qualified_name(constr.attributes["resource"].value)
-
+            @property = self.constraints[@constraint_name.to_sym]
           when EXACTLY
             count = constr.child.text.to_i
             restrict = ExactlyRestriction.new
-            property = self.constraints[@constraint_name.to_sym]
             column = entity.corresponding_model.name.downcase + "_id"
-              if property.name.include?("belongsTo")
+              if @property.name.start_with?("hasAndBelongsTo")
+                restrict.has_and_belogs_to_many = true
+                restrict.property = @property
+                restrict.entity = entity
+                restrict.column = @property.field + "_id"
+                count = constr.child.text.to_i
+                restrict.count = count
+                entity.add_restriction(restrict)
+              elsif @property.name.start_with?("belongsTo")
                 restrict = ExistenceRestriction.new
                 restrict.entity = entity
-                restrict.column = property.field + "_id"
-                restrict.property= property
+                restrict.column = @property.field + "_id"
+                restrict.property= @property
                 entity.add_restriction(restrict)
               else
-                foreign_table = Object.const_get(property.field.capitalize).table_name
+                foreign_table = Object.const_get(@property.field.capitalize).table_name
                 restrict.entity = entity
                 restrict.foreign_table = foreign_table
                 #TODO Better column Detection
                 restrict.column = column
                 count = constr.child.text.to_i
                 restrict.count = count
-                restrict.property= property
+                restrict.property= @property
                 entity.add_restriction(restrict)
               end
           when MINIMAL
             restrict = MinimalRestriction.new
-            foreign_table = Object.const_get(self.constraints[@constraint_name.to_sym].field.capitalize).table_name
+            if @property.name.start_with?("hasAndBelongsTo")
+              restrict.has_and_belongs_to_many = true
+            end
+            foreign_table = Object.const_get(@property.field.capitalize).table_name
             restrict.entity = entity
             restrict.foreign_table = foreign_table
             #TODO Better column Detection
             restrict.column = entity.corresponding_model.name.downcase + "_id"
             count = constr.child.text.to_i
             restrict.count = count
-            restrict.property= self.constraints[@constraint_name.to_sym]
+            restrict.property= @property
             entity.add_restriction(restrict)
           when EXISTENCE
-            property = self.constraints[@constraint_name.to_sym]
+            property = @property
             if property.class == DataProperty
               restrict = ExistenceRestriction.new
               restrict.entity = entity
               restrict.column = @column
-              restrict.property= self.constraints[@constraint_name.to_sym]
+              restrict.property= @property
               entity.add_restriction(restrict)
             elsif property.class == ObjectProperty
               restrict = MinimalRestriction.new
-              foreign_table = Object.const_get(self.constraints[@constraint_name.to_sym].field.capitalize).table_name
+              if @property.name.start_with?("hasAndBelongsTo")
+                restrict.has_and_belongs_to_many = true
+              end
+              foreign_table = Object.const_get(@property.field.capitalize).table_name
               restrict.entity = entity
               restrict.foreign_table = foreign_table
               #TODO Better column Detection
               restrict.column = entity.corresponding_model.name.downcase + "_id"
               restrict.count = 1
-              restrict.property= self.constraints[@constraint_name.to_sym]
+              restrict.property= @property
               entity.add_restriction(restrict)
             end
           end
