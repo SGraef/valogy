@@ -5,7 +5,7 @@ module Valogy
     MINIMAL  = "minQualifiedCardinality"
     EXISTENCE= "someValuesFrom"
     LANGUAGES= ["de","en", "fr", "es"]
-    DEFAULT_VALIDATION= {"de" => "Bitte überprüfen sie ihre Eingaben.", "en" => "Please check your information", "fr" => "S'il vous plaît vérifier vos entrées.", "es" => "Por favor, compruebe sus entradas."}
+    DEFAULT_VALIDATION= {"de" => "Bitte überprüfen sie ihre Eingaben.", "en" => "Please check your information", "fr" => "Veuillez vérifier votre saisie svp s'il-vous-plaît", "es" => "Por favor, compruebe sus entradas."}
 		GET_ALL_CONSTRAINTS = "SELECT constraint_name, table_name FROM information_schema.table_constraints WHERE constraint_name LIKE 'valogy%'"
 		GET_ALL_FUNCTIONS = "SELECT routine_name FROM information_schema.routines WHERE specific_schema NOT IN ('pg_catalog', 'information_schema') AND type_udt_name != 'trigger';"
 		attr_accessor :constraints, :inverse_constraints, :classes, :entities
