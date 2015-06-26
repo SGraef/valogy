@@ -29,7 +29,7 @@ module Valogy
         join_table_name = "#{classes.first}_#{classes.last}"
         function_name = generate_function_name(
                         "has_and_belongs_to_many_#{self.constraint_suffix}",
-                        "#{column}_#{entity}",
+                        "#{column}_#{entity.corresponding_model.to_s.downcase}",
                         join_table_name
                         )
         generate_function(column, count, join_table_name, function_name)
