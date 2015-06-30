@@ -3,61 +3,61 @@ de:
   valogy:
     model:
       valogy_items_character_id_minimal: character_id
-      valogy_characters_item_id_minimal: item_id
       valogy_sheets_user_id_not_null: user_id
       valogy_slots_sheet_id_minimal: sheet_id
       valogy_slots_sheet_id_not_null: sheet_id
-      valogy_users_password_not_null: password
       valogy_users_username_not_null: username
+      valogy_users_password_not_null: password
+      valogy_users_email_not_null: email
     valogy_items_character_id_minimal: Bitte überprüfen sie ihre Eingaben.
-    valogy_characters_item_id_minimal: Bitte überprüfen sie ihre Eingaben.
     valogy_sheets_user_id_not_null: Bitte überprüfen sie ihre Eingaben.
     valogy_slots_sheet_id_minimal: Dies ist nicht erfüllt
     valogy_slots_sheet_id_not_null: Bitte überprüfen sie ihre Eingaben.
-    valogy_users_password_not_null: Bitte überprüfen sie ihre Eingaben.
     valogy_users_username_not_null: Bitte überprüfen sie ihre Eingaben.
+    valogy_users_password_not_null: Bitte überprüfen sie ihre Eingaben.
+    valogy_users_email_not_null: Bitte überprüfen sie ihre Eingaben.
 en:
   valogy:
     model:
       valogy_items_character_id_minimal: character_id
-      valogy_characters_item_id_minimal: item_id
       valogy_sheets_user_id_not_null: user_id
       valogy_slots_sheet_id_not_null: sheet_id
-      valogy_users_password_not_null: password
       valogy_users_username_not_null: username
+      valogy_users_password_not_null: password
+      valogy_users_email_not_null: email
     valogy_items_character_id_minimal: Please check your information
-    valogy_characters_item_id_minimal: Please check your information
     valogy_sheets_user_id_not_null: Please check your information
     valogy_slots_sheet_id_not_null: Please check your information
-    valogy_users_password_not_null: Please check your information
     valogy_users_username_not_null: Please check your information
+    valogy_users_password_not_null: Please check your information
+    valogy_users_email_not_null: Please check your information
 fr:
   valogy:
     model:
       valogy_items_character_id_minimal: character_id
-      valogy_characters_item_id_minimal: item_id
       valogy_sheets_user_id_not_null: user_id
       valogy_slots_sheet_id_not_null: sheet_id
-      valogy_users_password_not_null: password
       valogy_users_username_not_null: username
+      valogy_users_password_not_null: password
+      valogy_users_email_not_null: email
     valogy_items_character_id_minimal: Veuillez vérifier votre saisie svp s'il-vous-plaît
-    valogy_characters_item_id_minimal: Veuillez vérifier votre saisie svp s'il-vous-plaît
     valogy_sheets_user_id_not_null: Veuillez vérifier votre saisie svp s'il-vous-plaît
     valogy_slots_sheet_id_not_null: Veuillez vérifier votre saisie svp s'il-vous-plaît
-    valogy_users_password_not_null: Veuillez vérifier votre saisie svp s'il-vous-plaît
     valogy_users_username_not_null: Veuillez vérifier votre saisie svp s'il-vous-plaît
+    valogy_users_password_not_null: Veuillez vérifier votre saisie svp s'il-vous-plaît
+    valogy_users_email_not_null: Veuillez vérifier votre saisie svp s'il-vous-plaît
 es:
   valogy:
     model:
       valogy_items_character_id_minimal: character_id
-      valogy_characters_item_id_minimal: item_id
       valogy_sheets_user_id_not_null: user_id
       valogy_slots_sheet_id_not_null: sheet_id
-      valogy_users_password_not_null: password
       valogy_users_username_not_null: username
+      valogy_users_password_not_null: password
+      valogy_users_email_not_null: email
     valogy_items_character_id_minimal: Por favor, compruebe sus entradas.
-    valogy_characters_item_id_minimal: Por favor, compruebe sus entradas.
     valogy_sheets_user_id_not_null: Por favor, compruebe sus entradas.
     valogy_slots_sheet_id_not_null: Por favor, compruebe sus entradas.
-    valogy_users_password_not_null: Por favor, compruebe sus entradas.
     valogy_users_username_not_null: Por favor, compruebe sus entradas.
+    valogy_users_password_not_null: Por favor, compruebe sus entradas.
+    valogy_users_email_not_null: Por favor, compruebe sus entradas.

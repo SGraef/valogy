@@ -124,6 +124,8 @@ module Valogy
                                   first.attributes["resource"].value
             ax.constraint =
             constraints[extract_qualified_name(constraint_with_iri).to_sym]
+            ax.datatype = sub.xpath(".//owl:someValuesFrom").first.
+            attributes["resource"].value.split("#").last
           else
             ax.name = sub.name
             ax.additional_information = sub.children.first.to_s
@@ -144,7 +146,9 @@ module Valogy
         resolve_restriction(entity)
         #  restrictions(klass).each { |restriction| resolverestriction(restriction) }
       end
-
+      axioms.each_value do |ax|
+        ax.resolve
+      end
     end
 
     def determine_model(element)
