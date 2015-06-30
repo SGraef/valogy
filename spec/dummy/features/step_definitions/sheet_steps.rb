@@ -3,7 +3,7 @@ Given(/^The Ontology is successfully parsed$/) do
 end
 
 Given(/^There is an User$/) do
-  User.create!(username: "foobar", password: "12345")
+  User.create!(username: "foobar", password: "12345", email: "foo@bar.de")
 end
 
 Given(/^I'm on the create Sheets page$/) do
