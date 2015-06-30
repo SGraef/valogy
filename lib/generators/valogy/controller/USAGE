@@ -1,0 +1,10 @@
+Description:
+  To use the benefit of Valogy you have to have the controller to accept the
+  ontology file with this generator you get the default Controller
+
+Example:
+    This generator will create the Valogy Controller
+
+    This will create:
+        app/controllers/valogy_controller.rb
+        app/views/valogy/new.html.erb
