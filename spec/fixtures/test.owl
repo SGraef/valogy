@@ -18,10 +18,10 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about="http://luna-wolf.de/ontologies/werwolf"/>
-    
 
 
-    <!-- 
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Annotation properties
@@ -29,22 +29,16 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
 
 
-    <!-- http://luna-wolf.de/ontologies/werwolf#lang -->
 
-    <owl:AnnotationProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#lang"/>
-    
+    <!-- http://luna-wolf.de/ontologies/werwolf#validEmail -->
 
-
-    <!-- http://luna-wolf.de/ontologies/werwolf#validPassword -->
-
-    <owl:AnnotationProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#validPassword"/>
-    
+    <owl:AnnotationProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#validEmail"/>
 
 
-    <!-- 
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Object Properties
@@ -52,7 +46,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
+
 
 
     <!-- http://luna-wolf.de/ontologies/werwolf#belongsToSheet -->
@@ -62,7 +56,7 @@
         <rdfs:domain rdf:resource="http://luna-wolf.de/ontologies/werwolf#Slot"/>
         <owl:inverseOf rdf:resource="http://luna-wolf.de/ontologies/werwolf#hasSlot"/>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://luna-wolf.de/ontologies/werwolf#belongsToUser -->
@@ -72,7 +66,7 @@
         <rdfs:range rdf:resource="http://luna-wolf.de/ontologies/werwolf#User"/>
         <owl:inverseOf rdf:resource="http://luna-wolf.de/ontologies/werwolf#hasSheet"/>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://luna-wolf.de/ontologies/werwolf#hasAndBelongsToManyItems -->
@@ -81,13 +75,13 @@
         <rdfs:domain rdf:resource="http://luna-wolf.de/ontologies/werwolf#Character"/>
         <rdfs:range rdf:resource="http://luna-wolf.de/ontologies/werwolf#Item"/>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://luna-wolf.de/ontologies/werwolf#hasGift -->
 
     <owl:ObjectProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#hasGift"/>
-    
+
 
 
     <!-- http://luna-wolf.de/ontologies/werwolf#hasPlayer -->
@@ -95,7 +89,7 @@
     <owl:ObjectProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#hasPlayer">
         <rdfs:domain rdf:resource="http://luna-wolf.de/ontologies/werwolf#User"/>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://luna-wolf.de/ontologies/werwolf#hasSheet -->
@@ -104,7 +98,7 @@
         <rdfs:range rdf:resource="http://luna-wolf.de/ontologies/werwolf#Sheet"/>
         <rdfs:domain rdf:resource="http://luna-wolf.de/ontologies/werwolf#User"/>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://luna-wolf.de/ontologies/werwolf#hasSlot -->
@@ -114,10 +108,10 @@
         <rdfs:domain rdf:resource="http://luna-wolf.de/ontologies/werwolf#Sheet"/>
         <rdfs:range rdf:resource="http://luna-wolf.de/ontologies/werwolf#Slot"/>
     </owl:ObjectProperty>
-    
 
 
-    <!-- 
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Data properties
@@ -125,15 +119,15 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
 
 
-    <!-- http://luna-wolf.de/ontologies/werwolf#hasDescription -->
 
-    <owl:DatatypeProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#hasDescription">
+    <!-- http://luna-wolf.de/ontologies/werwolf#hasEmail -->
+
+    <owl:DatatypeProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#hasEmail">
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://luna-wolf.de/ontologies/werwolf#hasName -->
@@ -142,26 +136,16 @@
         <rdfs:label rdf:datatype="&xsd;string">username</rdfs:label>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://luna-wolf.de/ontologies/werwolf#hasPassword -->
 
-    <owl:DatatypeProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#hasPassword">
-        <validPassword rdf:datatype="&xsd;string">^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&amp;]).{3,}$</validPassword>
-    </owl:DatatypeProperty>
-    
+    <owl:DatatypeProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#hasPassword"/>
 
 
-    <!-- http://luna-wolf.de/ontologies/werwolf#hasRank -->
 
-    <owl:DatatypeProperty rdf:about="http://luna-wolf.de/ontologies/werwolf#hasRank">
-        <rdfs:range rdf:resource="&xsd;integer"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- 
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Classes
@@ -169,7 +153,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
+
 
 
     <!-- http://luna-wolf.de/ontologies/werwolf#Character -->
@@ -182,13 +166,13 @@
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
-    
+
 
 
     <!-- http://luna-wolf.de/ontologies/werwolf#Item -->
 
     <owl:Class rdf:about="http://luna-wolf.de/ontologies/werwolf#Item"/>
-    
+
 
 
     <!-- http://luna-wolf.de/ontologies/werwolf#Sheet -->
@@ -208,7 +192,7 @@
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
-    
+
 
 
     <!-- http://luna-wolf.de/ontologies/werwolf#Slot -->
@@ -222,7 +206,7 @@
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
-    
+
 
 
     <!-- http://luna-wolf.de/ontologies/werwolf#User -->
@@ -230,24 +214,30 @@
     <owl:Class rdf:about="http://luna-wolf.de/ontologies/werwolf#User">
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://luna-wolf.de/ontologies/werwolf#hasName"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://luna-wolf.de/ontologies/werwolf#hasPassword"/>
                 <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://luna-wolf.de/ontologies/werwolf#hasName"/>
+                <owl:onProperty rdf:resource="http://luna-wolf.de/ontologies/werwolf#hasEmail"/>
                 <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     <owl:Axiom>
-        <validPassword rdf:datatype="&xsd;string">(?=.*[a-zA-Z])(?=.*[0-9]).{6,}</validPassword>
+        <validEmail>[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+</validEmail>
         <owl:annotatedSource rdf:resource="http://luna-wolf.de/ontologies/werwolf#User"/>
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://luna-wolf.de/ontologies/werwolf#hasPassword"/>
+                <owl:onProperty rdf:resource="http://luna-wolf.de/ontologies/werwolf#hasEmail"/>
                 <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </owl:annotatedTarget>
@@ -257,4 +247,3 @@
 
 
 <!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
-

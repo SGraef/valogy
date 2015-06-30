@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Sheet, :type => :model do
 
-  let(:user)  {User.create!(username: "foobar", password: "123456")}
+  let(:user)  {User.create!(username: "foobar", password: "123456", email: "foo@bar.de")}
   let(:sheet) {Sheet.new(user: user)}
 
 
