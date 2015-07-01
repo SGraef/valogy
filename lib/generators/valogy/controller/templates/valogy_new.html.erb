@@ -1,1 +1,4 @@
-erb
+<h3>Upload ontology</h3> 
+<%= form_tag({action: :new}, multipart: true) do %>
+	  <%= file_field_tag 'ontology' %>
+	<% end %>
