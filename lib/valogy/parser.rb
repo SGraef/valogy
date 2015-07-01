@@ -31,10 +31,10 @@ module Valogy
 			end
     end
 
-    def self.parse(file)
+    def self.parse(file_path)
       parser = self.new
       parser.clean_database
-      parser.open_file(file)
+      parser.open_file(file_path)
       parser.constraints = Hash.new
       parser.inverse_constraints = Hash.new
       parser.entities = Hash.new
