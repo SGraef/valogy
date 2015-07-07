@@ -9,7 +9,7 @@ RSpec.describe User, :type => :model do
   context "constraints which is for attributes of the model" do
     it "raise an error if not fullfilled constraints" do
       Valogy::Parser.parse("#{fixture_path}/test.owl")
-      expect {User.create!}.to raise_error
+      expect {User.create!}.to raise_error(ActiveRecord::RecordInvalid)
     end
     it "raise no error if fullfilled constraints" do
       Valogy::Parser.parse("#{fixture_path}/test.owl")
@@ -17,7 +17,7 @@ RSpec.describe User, :type => :model do
     end
     it "raise an error if data is not valid" do
       Valogy::Parser.parse("#{fixture_path}/test.owl")
-      expect{User.create!(username: "foobar", password:"12345", email:"bla")}.to raise_error
+      expect{User.create!(username: "foobar", password:"12345", email:"bla")}.to raise_error(ActiveRecord::RecordInvalid)
     end
     it "raise no if data is valid" do
       Valogy::Parser.parse("#{fixture_path}/test.owl")
