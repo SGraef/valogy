@@ -23,11 +23,7 @@ module Valogy
         BaseModel.connection.execute("ALTER TABLE #{constraint["table_name"]} DROP CONSTRAINT #{constraint["constraint_name"]}")
       end
 			BaseModel.connection.execute(GET_ALL_FUNCTIONS).each do |function|
-				if function["routine_name"].include?("has_and_belongs_to_many")
-					BaseModel.connection.execute("DROP FUNCTION #{function["routine_name"]}(integer, integer)")
-				else
-					BaseModel.connection.execute("DROP FUNCTION #{function["routine_name"]}(integer)")
-				end
+				BaseModel.connection.execute("DROP FUNCTION #{function["routine_name"]}(integer)")
 			end
     end
 
