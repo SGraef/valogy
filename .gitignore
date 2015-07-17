@@ -2,4 +2,5 @@
 *.log
 *.swp
 
+.DS_Store
 spec/dummy/tmp
