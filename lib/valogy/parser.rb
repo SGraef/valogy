@@ -11,21 +11,6 @@ module Valogy
 		attr_accessor :constraints, :inverse_constraints, :classes, :entities
     attr_accessor :axioms, :validation_hash
 
-    def open_file(file_path)
-      file = File.open(file_path)
-      @ontology = Nokogiri::XML(file) do |config|
-        config.noblanks
-      end
-    end
-
-    def clean_database
-      BaseModel.connection.execute(GET_ALL_CONSTRAINTS).each do |constraint|
-        BaseModel.connection.execute("ALTER TABLE #{constraint["table_name"]} DROP CONSTRAINT #{constraint["constraint_name"]}")
-      end
-			BaseModel.connection.execute(GET_ALL_FUNCTIONS).each do |function|
-				BaseModel.connection.execute("DROP FUNCTION #{function["routine_name"]}(integer)")
-			end
-    end
 
     def self.parse(file_path)
       parser = self.new
@@ -43,7 +28,23 @@ module Valogy
       parser.all_axioms
       parser.all_classes
       File.open("#{Rails.root}/config/locales/valogy.yml", 'w') {|f| f.write parser.validation_hash.to_yaml }
+    end
 
+
+    def open_file(file_path)
+      file = File.open(file_path)
+      @ontology = Nokogiri::XML(file) do |config|
+        config.noblanks
+      end
+    end
+
+    def clean_database
+      BaseModel.connection.execute(GET_ALL_CONSTRAINTS).each do |constraint|
+        BaseModel.connection.execute("ALTER TABLE #{constraint["table_name"]} DROP CONSTRAINT #{constraint["constraint_name"]}")
+      end
+			BaseModel.connection.execute(GET_ALL_FUNCTIONS).each do |function|
+				BaseModel.connection.execute("DROP FUNCTION #{function["routine_name"]}(integer)")
+			end
     end
 
     def all_constraints
