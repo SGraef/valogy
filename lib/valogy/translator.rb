@@ -14,20 +14,22 @@ module Valogy
 
     def self.parse(file_path)
       translator = self.new
-      translator.clean_database
-      translator.open_file(file_path)
-      translator.constraints = Hash.new
-      translator.inverse_constraints = Hash.new
-      translator.entities = Hash.new
-      translator.axioms = Hash.new
-      translator.validation_hash = Hash.new
-      LANGUAGES.each do |lang|
-        translator.validation_hash[lang] = {"valogy" => {"model" => Hash.new}}
+      Valogy::BaseModel.transaction do 
+        translator.clean_database
+        translator.open_file(file_path)
+        translator.constraints = Hash.new
+        translator.inverse_constraints = Hash.new
+        translator.entities = Hash.new
+        translator.axioms = Hash.new
+        translator.validation_hash = Hash.new
+        LANGUAGES.each do |lang|
+          translator.validation_hash[lang] = {"valogy" => {"model" => Hash.new}}
+        end
+        translator.all_constraints
+        translator.all_axioms
+        translator.all_classes
+        File.open("#{Rails.root}/config/locales/valogy.yml", 'w') {|f| f.write translator.validation_hash.to_yaml }
       end
-      translator.all_constraints
-      translator.all_axioms
-      translator.all_classes
-      File.open("#{Rails.root}/config/locales/valogy.yml", 'w') {|f| f.write translator.validation_hash.to_yaml }
     end
 
 
