@@ -1,5 +1,5 @@
 module Valogy
-  class Parser
+  class Translator
     EXACTLY  = "qualifiedCardinality"
     PROPERTY = "onProperty"
     MINIMAL  = "minQualifiedCardinality"
@@ -13,21 +13,21 @@ module Valogy
 
 
     def self.parse(file_path)
-      parser = self.new
-      parser.clean_database
-      parser.open_file(file_path)
-      parser.constraints = Hash.new
-      parser.inverse_constraints = Hash.new
-      parser.entities = Hash.new
-      parser.axioms = Hash.new
-      parser.validation_hash = Hash.new
+      translator = self.new
+      translator.clean_database
+      translator.open_file(file_path)
+      translator.constraints = Hash.new
+      translator.inverse_constraints = Hash.new
+      translator.entities = Hash.new
+      translator.axioms = Hash.new
+      translator.validation_hash = Hash.new
       LANGUAGES.each do |lang|
-        parser.validation_hash[lang] = {"valogy" => {"model" => Hash.new}}
+        translator.validation_hash[lang] = {"valogy" => {"model" => Hash.new}}
       end
-      parser.all_constraints
-      parser.all_axioms
-      parser.all_classes
-      File.open("#{Rails.root}/config/locales/valogy.yml", 'w') {|f| f.write parser.validation_hash.to_yaml }
+      translator.all_constraints
+      translator.all_axioms
+      translator.all_classes
+      File.open("#{Rails.root}/config/locales/valogy.yml", 'w') {|f| f.write translator.validation_hash.to_yaml }
     end
 
 

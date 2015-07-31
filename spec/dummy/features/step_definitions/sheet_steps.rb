@@ -1,5 +1,5 @@
 Given(/^The Ontology is successfully parsed$/) do
-  Valogy::Parser.parse("#{Rails.root}/spec/fixtures/test.owl")
+  Valogy::Translator.parse("#{Rails.root}/spec/fixtures/test.owl")
 end
 
 Given(/^There is an User$/) do
