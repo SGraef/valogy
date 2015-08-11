@@ -143,7 +143,6 @@ module Valogy
         entities[modelname.to_sym] = entity
         build_restrictions(restrictions(klass), entity)
         resolve_restriction(entity)
-        #  restrictions(klass).each { |restriction| resolverestriction(restriction) }
       end
       axioms.each_value do |ax|
         ax.resolve
