@@ -13,4 +13,6 @@ module Valogy
   require 'valogy/restrictions/maximal_restriction'
   require 'valogy/restrictions/minimal_restriction'
   require 'valogy/base_model'
+
+  load "tasks/valogy_tasks.rake"
 end
