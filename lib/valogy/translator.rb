@@ -3,6 +3,7 @@ module Valogy
     EXACTLY  = "qualifiedCardinality"
     PROPERTY = "onProperty"
     MINIMAL  = "minQualifiedCardinality"
+    MAXIMAL  = "maxQualifiedCardinality"
     EXISTENCE= "someValuesFrom"
     LANGUAGES= ["de","en", "fr", "es"]
     DEFAULT_VALIDATION= {"de" => "Bitte überprüfen sie ihre Eingaben.", "en" => "Please check your information", "fr" => "Veuillez vérifier votre saisie svp s'il-vous-plaît", "es" => "Por favor, compruebe sus entradas."}
@@ -190,7 +191,10 @@ module Valogy
             generate_exactly_restriction(entity, count)
           when MINIMAL
             count = constr.child.text.to_i
-            generate_minimal_restriction(entity, count)
+            generate_count_restriction(entity, count, MinimalRestriction.new)
+          when MAXIMAL
+            count = constr.child.text.to_i
+            generate_count_restriction(entity, count, MaximalRestriction.new)
           when EXISTENCE
             generate_existence_restriction(entity)
           end
@@ -216,15 +220,13 @@ module Valogy
       end
     end
 
-    def generate_minimal_restriction(entity, count)
-      restrict = MinimalRestriction.new
+    def generate_count_restriction(entity, count, restrict)
       if @property.name.start_with?("hasAndBelongsTo")
         restrict.has_and_belongs_to_many = true
       end
       foreign_table = Object.const_get(@property.field.capitalize).table_name
       restrict.entity = entity
       restrict.foreign_table = foreign_table
-      #TODO Better column Detection
       restrict.column = entity.corresponding_model.name.downcase + "_id"
       restrict.count = count
       restrict.property= @property
@@ -251,7 +253,6 @@ module Valogy
           foreign_table = Object.const_get(@property.field.capitalize).table_name
           restrict.entity = entity
           restrict.foreign_table = foreign_table
-          #TODO Better column Detection
           restrict.column = column
           restrict.count = count
           restrict.property= @property
@@ -274,7 +275,6 @@ module Valogy
         foreign_table = Object.const_get(@property.field.capitalize).table_name
         restrict.entity = entity
         restrict.foreign_table = foreign_table
-        #TODO Better column Detection
         restrict.column = entity.corresponding_model.name.downcase + "_id"
         restrict.count = 1
         restrict.property= @property
