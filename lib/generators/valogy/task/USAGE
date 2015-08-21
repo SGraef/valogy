@@ -1,0 +1,12 @@
+Description:
+  Valogy gives two ways to use translation of ontologies to sql
+  one way is the controller and view based method the other
+  is to use the raketask
+
+Example:
+    This generator will create the Valogy Controller
+
+    This will create:
+        app/controllers/valogy_controller.rb
+        app/views/valogy/new.html.erb or app/views/valogy/new.html.haml
+        lib/task/valogy.rake
