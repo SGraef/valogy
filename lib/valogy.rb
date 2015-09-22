@@ -4,7 +4,6 @@ module Valogy
   require 'valogy/object_property'
   require 'valogy/entity'
   require 'valogy/axiom'
-  require 'valogy/query'
   require 'valogy/comment'
   require 'valogy/translator'
   require 'valogy/restriction'
