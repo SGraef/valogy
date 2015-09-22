@@ -2,5 +2,7 @@
 *.log
 *.swp
 
+coverage/
+
 .DS_Store
 spec/dummy/tmp
