@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/SGraef/valogy.svg?branch=master)](https://travis-ci.org/SGraef/valogy)
+[![Coverage Status](https://coveralls.io/repos/SGraef/valogy/badge.svg?branch=master&service=github)](https://coveralls.io/github/SGraef/valogy?branch=master)
+
 Valogy
 =======
 
