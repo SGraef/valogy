@@ -15,7 +15,7 @@ module Valogy
 
     def self.parse(file_path)
       translator = self.new
-      Valogy::BaseModel.transaction do 
+      Valogy::BaseModel.transaction do
         translator.clean_database
         translator.open_file(file_path)
         translator.constraints = Hash.new
