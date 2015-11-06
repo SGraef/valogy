@@ -13,10 +13,6 @@ module Valogy
         copy_file "valogy_new.html.#{view_suffix}", "app/views/valogy/new.html.#{view_suffix}"
       end
 
-      def copy_rake_task
-        copy_file "valogy_tasks.rake", "lib/tasks/valogy.rake"
-      end
-
       def route_valogy
         route "get 'valogy/new/', to: 'valogy#new'"
         route "post 'valogy/create/', to: 'valogy#create'"

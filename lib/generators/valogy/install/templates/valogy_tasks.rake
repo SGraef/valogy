@@ -1,1 +1,0 @@
-../../../../tasks/valogy_tasks.rake
