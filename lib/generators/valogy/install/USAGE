@@ -1,12 +1,14 @@
 Description:
-  Valogy gives two ways to use translation of ontologies to sql
-  one way is the controller and view based method the other
-  is to use the raketask
+  Valogy gives two ways to translate Ontologies as Database Constraints the
+  first way is via rake taks, which is accessible after installation and the
+  other way is using HTTP. With this generator you can install an Controller
+  and a view to your app. 
 
 Example:
-    This generator will create the Valogy Controller
+    This generator will create the Valogy Controller and the view
+
+    rails g valogy:install
 
     This will create:
         app/controllers/valogy_controller.rb
         app/views/valogy/new.html.erb or app/views/valogy/new.html.haml
-        lib/task/valogy.rake
