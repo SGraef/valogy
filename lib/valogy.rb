@@ -12,4 +12,9 @@ module Valogy
   require 'valogy/restrictions/maximal_restriction'
   require 'valogy/restrictions/minimal_restriction'
   require 'valogy/base_model'
+  class Railtie < Rails::Railtie
+    rake_tasks do
+      load 'tasks/valogy_tasks.rake'
+    end
+  end
 end
